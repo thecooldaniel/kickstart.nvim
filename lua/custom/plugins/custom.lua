@@ -53,4 +53,53 @@ return {
   -- abolish.vim
   -- https://github.com/tpope/vim-abolish
   { 'tpope/vim-abolish' },
+
+  -- wilder
+  -- https://github.com/gelguy/wilder.nvim
+  {
+    'gelguy/wilder.nvim',
+    config = function()
+      -- config goes here
+    end,
+  },
+  -- https://github.com/nvim-lualine/lualine.nvim
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup { theme = 'auto' }
+    end,
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = '2.11.0',
+    config = function()
+      require('toggleterm').setup {
+        open_mapping = [[<c-\>]],
+        autochdir = true,
+        -- on_create = function(t)
+        --   t.cmd = print(vim.loop.cwd())
+        -- end,
+      }
+    end,
+  },
+
+  {
+    'antoinemadec/vim-verilog-instance',
+  },
+
+  {
+    'vhda/verilog_systemverilog.vim',
+    config = function()
+      vim.o.foldmethod = 'syntax'
+    end,
+  },
+
+  vim.filetype.add {
+    extension = {
+      v = 'verilog_systemverilog',
+      svh = 'verilog_systemverilog',
+      sv = 'verilog_systemverilog',
+    },
+  },
 }
