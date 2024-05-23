@@ -2,11 +2,18 @@ return {
   -- AutoSession
   {
     'rmagatti/auto-session',
+
     config = function()
+      local function close_neotree()
+        local neotree = require 'neo-tree.command'
+        neotree.execute { action = 'close' }
+      end
       require('auto-session').setup {
         log_level = 'error',
         auto_restore_enabled = true,
         auto_session_enabled = true,
+        -- pre_save_cmds = { close_neotree() },
+        pre_save_cmds = { ':windo if (bufname() =~ "neo-tree") | q | endif ' },
       }
       vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
     end,
@@ -92,6 +99,32 @@ return {
     'vhda/verilog_systemverilog.vim',
     config = function()
       vim.o.foldmethod = 'syntax'
+    end,
+  },
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    config = function()
+      require('neo-tree').setup {}
+      -- local command = require 'neo-tree.command'
+      vim.keymap.set('n', '<leader>te', ':Neotree reveal left toggle<CR>', { desc = '[T]oggle [E]xplorer' })
+    end,
+  },
+
+  {
+    's1n7ax/nvim-window-picker',
+    name = 'window-picker',
+    event = 'VeryLazy',
+    version = '2.*',
+    config = function()
+      require('window-picker').setup()
     end,
   },
 

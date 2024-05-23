@@ -567,7 +567,7 @@ require('lazy').setup({
       local servers = {
         verible = {
           -- cmd = { 'verible-verilog-ls', '--rules_config_search' },
-          -- cmd = { 'verible-verilog-ls' },
+          cmd = { 'verible-verilog-ls' },
           root_dir = require('lspconfig').util.root_pattern '.git',
           -- capabilities = capabilities,
           format_on_save = true,
@@ -889,7 +889,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
